@@ -4,18 +4,20 @@ package Mingeso.Proyecto.controller;
 import Mingeso.Proyecto.model.Pozo;
 import Mingeso.Proyecto.model.Question;
 import Mingeso.Proyecto.model.Quiz;
+import Mingeso.Proyecto.model.Section;
 import Mingeso.Proyecto.repositories.PozoRepository;
 import Mingeso.Proyecto.repositories.QuestionRepository;
 import Mingeso.Proyecto.repositories.QuizRepository;
+import Mingeso.Proyecto.repositories.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @CrossOrigin()
 @Controller
@@ -31,14 +33,13 @@ public class QuizController {
     @Autowired
     private PozoRepository pozoRepository;
 
+    @Autowired
+    private SectionRepository sectionRepository;
 
-
-    //Return all quizzes of a db
     @CrossOrigin
     @GetMapping(path="/all")
     @ResponseBody
     public Iterable<Quiz> getAllQuizzes () {
-
         return quizRepository.findAll();
     }
 
@@ -47,12 +48,8 @@ public class QuizController {
     @ResponseBody
     public ResponseEntity<Quiz> addQuiz(@RequestBody Quiz newQuiz){
         Quiz quiz = new Quiz();
-        //Falta agregar preguntas
-        System.out.println("Quiz created");
         return new ResponseEntity<>(quizRepository.save(quiz), HttpStatus.OK);
     }
-
-
 
     //Retorna una id asociada a un pozo especifico
     @CrossOrigin
@@ -112,6 +109,17 @@ public class QuizController {
         return quiz;
 
         //picolinosdad
+    }
+
+
+    @CrossOrigin
+    @GetMapping(path="/section/{id}")
+    public List<Quiz> getQuizzesOfSectionTime (@PathVariable(value = "id") Long SectionId) {
+        Section section = sectionRepository.getOne(SectionId);
+        Date date = new Date();
+        DateFormat hourDateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+        System.out.println("Hora y fecha: "+hourDateFormat.format(date));
+        return null;
     }
 
 }
