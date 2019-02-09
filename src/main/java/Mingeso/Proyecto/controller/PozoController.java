@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 @CrossOrigin()
 @Controller
-@RequestMapping(path="/pozo")
+@RequestMapping(path="Proyecto-Sprint2/pozo")
 public class PozoController {
 
     @Autowired
@@ -24,9 +24,7 @@ public class PozoController {
     @GetMapping(path = "/all")
     @ResponseBody
     public Iterable<Pozo> getAllPozos() {
-
         return pozoRepository.findAll();
-
     }
 
     @CrossOrigin

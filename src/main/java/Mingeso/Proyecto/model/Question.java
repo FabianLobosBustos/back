@@ -31,8 +31,9 @@ public class Question implements QuestionInterface {
     @OneToMany(mappedBy = "question",
             orphanRemoval = true,
             fetch = FetchType.LAZY)
+
     @JsonManagedReference
-    private List<Variable> variables = new ArrayList<>();
+    private List<Variable> variables;
 
     public int getId() {
         return id;

@@ -14,11 +14,8 @@ import static org.aspectj.runtime.internal.Conversions.intValue;
 public class Variable {
 
     private enum DataType {
-        INT//,
-        //FLOAT,
-        //COMPLEX
+        INT
     }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -39,10 +36,16 @@ public class Variable {
     private double upperNumberLimit;
 
     public Variable() {
+    System.out.println("hola");
 
     }
 
-    public Variable (Question question, String name, int lowerNumberLimit, int upperNumberLimit, DataType dataType) {
+    public Variable(String name, int lowerNumberLimit, int upperNumberLimit, DataType dataType){
+
+    }
+
+    public Variable(Question question, String name, int lowerNumberLimit, int upperNumberLimit, DataType dataType) {
+        System.out.println("chao");
         this.question = question;
         this.name = name;
         this.lowerNumberLimit = lowerNumberLimit;
@@ -51,9 +54,7 @@ public class Variable {
             case 0:
                 this.dataType = DataType.INT;
                 break;
-            /*case 1:
-                this.dataType = DataType.FLOAT;
-        */}
+        }
     }
 
 
@@ -74,9 +75,6 @@ public class Variable {
         this.name = name;
     }
 
-    public Question getQuestion() {
-        return question;
-    }
 
     public void setQuestion(Question question) {
         this.question = question;

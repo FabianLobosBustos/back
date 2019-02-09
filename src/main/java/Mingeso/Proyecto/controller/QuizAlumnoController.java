@@ -22,7 +22,7 @@ import java.util.List;
 
 @CrossOrigin()
 @Controller
-@RequestMapping(path="/quizalumno")
+@RequestMapping(path="Proyecto-Sprint2/quizalumno")
 public class QuizAlumnoController {
 
     @Autowired

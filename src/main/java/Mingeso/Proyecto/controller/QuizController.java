@@ -21,7 +21,7 @@ import java.util.*;
 
 @CrossOrigin()
 @Controller
-@RequestMapping(path="/quiz")
+@RequestMapping(path="Proyecto-Sprint2/quiz")
 public class QuizController {
 
     @Autowired
