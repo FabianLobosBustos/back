@@ -34,6 +34,7 @@ public class PozoController {
         Pozo pozo = pozoRepository.findPozoById(idPozo);
         pozo.setCantidadPreguntasQuiz(resource.getCantidadPreguntasQuiz());
         pozo.setDescripcion(resource.getDescripcion());
+        pozo.setTiempo(resource.getTiempo());
         pozoRepository.save(pozo);
 
         return new ResponseEntity<>(HttpStatus.OK);
@@ -48,6 +49,7 @@ public class PozoController {
         newPozo.setDescripcion(resource.getDescripcion());
         newPozo.setCantidadPreguntasQuiz(resource.getCantidadPreguntasQuiz());
         newPozo.setCantidadPreguntasPoso(resource.getCantidadPreguntasPoso());
+        newPozo.setTiempo(resource.getTiempo());
 
         Iterable<Pozo> pozos = pozoRepository.findAll();
         long idPozo = pozos.spliterator().getExactSizeIfKnown();

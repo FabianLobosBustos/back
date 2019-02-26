@@ -20,4 +20,20 @@ public class RespuestaCorrecta {
     @JoinColumn(name = "quizalumno_id", nullable = false)
     @JsonBackReference
     private QuizAlumno quizAlumno;
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public QuizAlumno getQuizAlumno() {
+        return quizAlumno;
+    }
+
+    public void setQuizAlumno(QuizAlumno quizAlumno) {
+        this.quizAlumno = quizAlumno;
+    }
 }

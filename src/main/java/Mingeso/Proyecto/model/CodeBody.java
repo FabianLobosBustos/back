@@ -20,4 +20,20 @@ public class CodeBody {
     @JoinColumn(name = "quizalumno_id", nullable = false)
     @JsonBackReference
     private QuizAlumno quizAlumno;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public QuizAlumno getQuizAlumno() {
+        return quizAlumno;
+    }
+
+    public void setQuizAlumno(QuizAlumno quizAlumno) {
+        this.quizAlumno = quizAlumno;
+    }
 }

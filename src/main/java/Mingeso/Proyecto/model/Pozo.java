@@ -20,6 +20,9 @@ public class Pozo {
     @Column(nullable = false)
     private int cantidadPreguntasPoso;
 
+    @Column(nullable = false)
+    private int tiempo;
+
     private String descripcion;
 
 
@@ -53,5 +56,13 @@ public class Pozo {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
     }
 }
