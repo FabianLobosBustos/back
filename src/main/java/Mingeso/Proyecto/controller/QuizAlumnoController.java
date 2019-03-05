@@ -1,10 +1,7 @@
 package Mingeso.Proyecto.controller;
 
 import Mingeso.Proyecto.model.*;
-import Mingeso.Proyecto.repositories.PozoRepository;
-import Mingeso.Proyecto.repositories.QuestionRepository;
-import Mingeso.Proyecto.repositories.QuizRepository;
-import Mingeso.Proyecto.repositories.VariableRepository;
+import Mingeso.Proyecto.repositories.*;
 import Mingeso.Proyecto.utilities.PythonRun;
 import Mingeso.Proyecto.utilities.SingletonQuestionValidator;
 import org.json.simple.parser.JSONParser;
@@ -37,7 +34,14 @@ public class QuizAlumnoController {
     @Autowired
     private PozoRepository pozoRepository;
 
+    @Autowired
+    private QuizAlumnoRepository quizAlumnoRepository;
 
+    @Autowired
+    private  RespuestaCorrectaRepository respuestaCorrectaRepository;
+
+    @Autowired
+    private RespuestaAlumnoRepository respuestaAlumnoRepository;
 
     @CrossOrigin
     @PostMapping(path="/reviewQuiz")
@@ -52,11 +56,23 @@ public class QuizAlumnoController {
 
 
         quizAlumnoRevisado.setRespuestaAlumno(respuestaAlumno);
-        quizAlumnoRevisado.setCodeBody(codeBody);
-        //corremos los codigos!!!
-        quizAlumnoRevisado.runCodes();
 
+
+
+        quizAlumnoRevisado.setCodeBody(codeBody);
+        quizAlumnoRevisado.runCodes();
         quizAlumnoRevisado.calcularNota();
+        quizAlumnoRepository.save(quizAlumnoRevisado);
+
+        for (RespuestaAlumno var: quizAlumnoRevisado.getRespuestaAlumno()) {
+            var.setQuizAlumno(quizAlumnoRevisado);
+            respuestaAlumnoRepository.save(var);
+        }
+
+        for (RespuestaCorrecta var: quizAlumnoRevisado.getRespuestaCorrecta()) {
+            var.setQuizAlumno(quizAlumnoRevisado);
+            respuestaCorrectaRepository.save(var);
+        }
 
         return quizAlumnoRevisado;
 

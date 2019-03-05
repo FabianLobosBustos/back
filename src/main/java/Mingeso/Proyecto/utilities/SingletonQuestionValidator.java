@@ -22,17 +22,14 @@ public final class SingletonQuestionValidator {
             for (Variable var:
                  question.getVariables()) {
                 if (!validateVariable(var)) {
-                    System.out.println("false 1");
 
                     return false;
                 }
             }
-            System.out.println("estamos tate");
+
 
             return true;
         }
-        System.out.println(question.getCodeBody().length());
-        System.out.println("false 2");
 
         return false;
     }
@@ -44,7 +41,6 @@ public final class SingletonQuestionValidator {
 
     private boolean validateCodeBody(String codeBody) {
         if(codeBody.length() > 0 && codeBody.length() <= 5000){
-            System.out.println("codeBody error");
 
         }
         return (codeBody.length() > 0 && codeBody.length() <= 5000);
@@ -53,7 +49,6 @@ public final class SingletonQuestionValidator {
     private boolean validatePozo(int pozo) {
 
         if (pozo >= 1){
-            System.out.println("pozo error");
 
         }
         return pozo >= 1;
@@ -80,7 +75,6 @@ public final class SingletonQuestionValidator {
             code += context.toPythonCode(var);
         }
         code += input.getCodeBody();
-        System.out.println(code);
 
         ConexionApiPythonFacade cont = new ConexionApiPythonFacade();
         String result = cont.correrCodigoPython(code);
@@ -92,13 +86,10 @@ public final class SingletonQuestionValidator {
         catch (ParseException e) {
             e.printStackTrace();
         }
-        System.out.println(json.get("error"));
         if(json.get("error").equals("")){
-            System.out.println(json.get("error"));
             return true;
         }
         else{
-            System.out.println(json.get("error"));
             return false;
         }
     }

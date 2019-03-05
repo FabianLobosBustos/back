@@ -20,5 +20,22 @@ public class RespuestaAlumno {
     @JoinColumn(name = "quizalumno_id", nullable = false)
     @JsonBackReference
     private QuizAlumno quizAlumno;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public void setQuizAlumno(QuizAlumno quizAlumno) {
+        this.quizAlumno = quizAlumno;
+    }
 }
 

@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "codeBody")
+@Table(name = "code_body")
 public class CodeBody {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

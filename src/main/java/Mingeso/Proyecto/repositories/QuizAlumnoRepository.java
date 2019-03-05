@@ -5,7 +5,7 @@ import Mingeso.Proyecto.model.QuizAlumno;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface QuizAlumnoRepository extends CrudRepository<Question, Long> {
+public interface QuizAlumnoRepository extends CrudRepository<QuizAlumno, Long> {
 
-    QuizAlumno findQuizAlumnoById(int id);
+    QuizAlumno findQuizAlumnoById(Long id);
 }

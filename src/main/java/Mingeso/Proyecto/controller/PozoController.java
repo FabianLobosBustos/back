@@ -52,7 +52,7 @@ public class PozoController {
         Iterable<Pozo> pozos = pozoRepository.findAll();
         long idPozo = pozos.spliterator().getExactSizeIfKnown();
         newPozo.setId((int)idPozo + 1);
-        System.out.println("Ahora el id a setear");
+
         System.out.println((int)idPozo + 1);
         pozoRepository.save(newPozo);
         return new ResponseEntity<>(HttpStatus.OK);

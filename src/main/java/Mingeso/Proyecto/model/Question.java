@@ -81,7 +81,7 @@ public class Question implements QuestionInterface {
             code += context.toPythonCode(var);
         }
         code += question.getCodeBody();
-        System.out.println(code);
+
 
         return code;
     }

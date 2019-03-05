@@ -22,7 +22,7 @@ public class QuizAlumno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     //por ahora no se utiliza!!!
     private int idAlumno;
@@ -58,19 +58,21 @@ public class QuizAlumno {
             CodeBody code = this.codeBody.get(i);
 
             String codeGet = code.getCode().replaceAll("\n", "\n");
-
-
             //USO DEL FACADE!!!!
             ConexionApiPythonFacade cont = new ConexionApiPythonFacade();
             String result = cont.correrCodigoPython(codeGet);
 
-            System.out.println("------");
+
+            System.out.println("lo impreso es... \n\n\n");
             System.out.println(codeGet);
+
 
             JSONObject json = null;
             try {
                 JSONParser parser = new JSONParser();
                 json = (JSONObject) parser.parse(result);
+
+
             }
             catch (ParseException e) {
                 e.printStackTrace();
@@ -105,14 +107,10 @@ public class QuizAlumno {
         this.nota = ((buenas*7)+(malas*1)) /codeBody.size();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    
     public int getIdAlumno() {
         return idAlumno;
     }

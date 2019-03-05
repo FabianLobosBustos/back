@@ -1,14 +1,8 @@
 package Mingeso.Proyecto.controller;
 
 
-import Mingeso.Proyecto.model.Pozo;
-import Mingeso.Proyecto.model.Question;
-import Mingeso.Proyecto.model.Quiz;
-import Mingeso.Proyecto.model.Section;
-import Mingeso.Proyecto.repositories.PozoRepository;
-import Mingeso.Proyecto.repositories.QuestionRepository;
-import Mingeso.Proyecto.repositories.QuizRepository;
-import Mingeso.Proyecto.repositories.SectionRepository;
+import Mingeso.Proyecto.model.*;
+import Mingeso.Proyecto.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +30,9 @@ public class QuizController {
     @Autowired
     private SectionRepository sectionRepository;
 
+    @Autowired
+    private QuizAlumnoRepository quizAlumnoRepository;
+
     @CrossOrigin
     @GetMapping(path="/all")
     @ResponseBody
@@ -51,29 +48,41 @@ public class QuizController {
         return new ResponseEntity<>(quizRepository.save(quiz), HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @GetMapping(path="/marks")
+    @ResponseBody
+    public Iterable<QuizAlumno> getMarksOfQuizzes (){
+        return quizAlumnoRepository.findAll();
+    }
+
+    @CrossOrigin
+    @GetMapping(path="/mark/{id}")
+    @ResponseBody
+
+    public QuizAlumno getMarkOfQuiz (@PathVariable(value = "id") Long QuizzAlumnoId){
+        return quizAlumnoRepository.findQuizAlumnoById(QuizzAlumnoId);
+    }
+
+
+
+
+
     //Retorna una id asociada a un pozo especifico
     @CrossOrigin
     @RequestMapping(value="/{id_pozo}",method = RequestMethod.GET)
     @ResponseBody
     public Quiz getQuiz(@PathVariable("id_pozo") Integer id_pozo) {
-
-
         //OBTENER NUMERO DE PREGUNTAS A OBTENER (DEL POZO)
         ArrayList<Question> preguntas;
         Quiz quiz = new Quiz();
-
         preguntas = questionRepository.findQuestionByPozo(id_pozo);
-
-
         int i;
 
         //Esto se obtendra de la clase pozo!!!
         Pozo pozo = pozoRepository.findPozoById(id_pozo);
-
-
         int cantidadPreguntasQuiz = pozo.getCantidadPreguntasQuiz();
 
-        System.out.println(cantidadPreguntasQuiz);
+
         Random aleatoreo = new Random(System.currentTimeMillis());
 
         ArrayList<Question> preguntasQuiz = new ArrayList();
@@ -102,7 +111,6 @@ public class QuizController {
             else {
                 seleccionada.setCodeBody(codigoPregunta);
                 preguntasQuiz.add(seleccionada);
-                System.out.println(seleccionada.getId());
             }
         }
         quiz.setQuestions(preguntasQuiz);
@@ -118,7 +126,7 @@ public class QuizController {
         Section section = sectionRepository.getOne(SectionId);
         Date date = new Date();
         DateFormat hourDateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-        System.out.println("Hora y fecha: "+hourDateFormat.format(date));
+
         return null;
     }
 

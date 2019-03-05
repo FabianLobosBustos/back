@@ -61,10 +61,10 @@ public class QuestionController {
         Question newQuestion = QuestionFactory.getQuestion();
         newQuestion.setCodeBody(resource.getCodeBody());
         newQuestion.setPozo(resource.getPozo());
+
         for (Variable var: resource.getVariables()) {
 
             var.setQuestion(newQuestion);
-            System.out.println(var);
             variableRepository.save(var);
         }
         //Aqui aumentamos en 1 el numero de preguntas en el pozo

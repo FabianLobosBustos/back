@@ -36,8 +36,6 @@ public class Variable {
     private double upperNumberLimit;
 
     public Variable() {
-    System.out.println("hola");
-
     }
 
     public Variable(String name, int lowerNumberLimit, int upperNumberLimit, DataType dataType){
@@ -45,7 +43,7 @@ public class Variable {
     }
 
     public Variable(Question question, String name, int lowerNumberLimit, int upperNumberLimit, DataType dataType) {
-        System.out.println("chao");
+
         this.question = question;
         this.name = name;
         this.lowerNumberLimit = lowerNumberLimit;
