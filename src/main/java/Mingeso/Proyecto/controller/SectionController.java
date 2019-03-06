@@ -33,12 +33,12 @@ public class SectionController {
     @PostMapping(value = "/upload", consumes = "text/csv")
     @CrossOrigin(origins = "*")
     public void uploadSimple(@RequestBody InputStream body) {
-        sectionRepository.saveAll(CsvUtils.read(Section.class, body);
+        sectionRepository.saveAll(CsvUtils.read(Section.class, body));
     }
 
     @PostMapping(value = "/upload", consumes = "multipart/form-data")
     @CrossOrigin(origins = "*")
     public void uploadMultipart(@RequestParam("file") MultipartFile file) {
-        sectionRepository.saveAll(CsvUtils.read(Section.class, file.getInputStream());
+        sectionRepository.saveAll(CsvUtils.read(Section.class, file.getInputStream()));
     }
 }
