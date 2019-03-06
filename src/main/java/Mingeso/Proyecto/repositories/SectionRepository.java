@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface SectionRepository extends JpaRepository<Section, Long> {
     List<Student> findStudentsById(Long id);
+    void saveAll(List<Section> sections);
 }

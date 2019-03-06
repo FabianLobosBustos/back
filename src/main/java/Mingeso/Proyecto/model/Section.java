@@ -18,6 +18,29 @@ public class Section {
         @Column(name = "code")
         private String code;
 
+        @Column(name = "modulo")
+        private String modulo;
+
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+
+        public String getModulo() {
+            return modulo;
+        }
+
+        public void setModulo(String modulo) {
+            this.modulo = modulo;
+        }
+        /*
+        @Column(name = "code")
+        private String code;
+
         @Column(name = "day")
         private int dayOfWeek;
 
@@ -65,4 +88,5 @@ public class Section {
         public void setTimeEnd(Time timeEnd) {
                 this.timeEnd = timeEnd;
         }
+        */
 }
